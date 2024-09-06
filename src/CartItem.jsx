@@ -20,24 +20,38 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-   
+    onContinueShopping(e)
   };
 
 
 
   const handleIncrement = (item) => {
+    const quantity = item.quantity + 1;
+    console.log(quantity)
+
+    // console.log(item.name)
+    dispatch(updateQuantity({ name: item.name, quantity }));
+
   };
 
   const handleDecrement = (item) => {
-   
+   if(item.quantity === 1){
+    removeItem(item);
+   }
+   else{
+    const quantity = item.quantity - 1;
+    dispatch(updateQuantity({name:item.name, quantity}));
+   }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item))
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-   
+    const item_cost = item.cost.slice(1); //because the cost is represented as e.g "$12" so one must slice the dollar sign
+    return item_cost * item.quantity;
   };
 
   return (

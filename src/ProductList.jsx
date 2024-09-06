@@ -2,11 +2,13 @@ import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { useDispatch, useSelector} from 'react-redux';
-import { addItem, updateQuantity, removeItem } from './CartSlice';
+import { addItem, updateQuantity, removeItem } from './CartSlice'; // the libraries to be imported
+
+
 
 function ProductList() {
     const dispatch = useDispatch();
-    const items = useSelector((state) =>state.cart);
+    const items = useSelector((state) =>state.cart); // the items that are in the cart {name, image, cost, quantity, etc}
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setaddedToCart] = useState({});
@@ -238,6 +240,8 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
+
+
    const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
@@ -311,7 +315,7 @@ const handleAddToCart = (plant) =>{
 
         </div>
  ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
+    <CartItem onContinueShopping={handleContinueShopping}/> //this function is passed as prop to the CartItem component ~ Judy
 )}
     </div>
     );
